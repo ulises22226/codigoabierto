@@ -1,0 +1,79 @@
+const { Schema, model } = require('mongoose');
+
+
+const ConexionSchema = Schema({
+
+    NumeroConexion: {
+        type: Number,
+        required: true
+    },
+    Nombre: {
+        type: String,
+        required: true,
+    },
+    Apellido: {
+        type: String,
+        required: true,
+    },
+
+    DNI: {
+        type: Number,
+        required: true
+    },
+    Barrio: {
+        type: Schema.Types.ObjectId,
+        ref: 'Barrio',
+        required: true
+    },
+    Categoria: {
+        type: Schema.Types.ObjectId,
+        ref: 'Categoria',
+        required: true
+    }
+
+
+})
+
+
+module.exports = model('Conexion', ConexionSchema);
+
+const { Schema, model } = require('mongoose');
+
+const PeriodoSchema = Schema({
+    Periodo: {
+        type: String,
+        required: true
+    },
+    Descripcion: {
+        type: String,
+        required: true
+    }
+
+})
+
+
+module.exports = model('Periodo', PeriodoSchema);
+
+const { Schema, model } = require('mongoose');
+
+const PagadoTFSchema = Schema({
+
+    Conexion: {
+        type: Schema.Types.ObjectId,
+        ref: 'Conexion',
+        required: true
+    },
+    Periodo: {
+        type: Schema.Types.ObjectId,
+        ref: 'Periodo',
+        required: true
+    },
+    Pago: {
+        type: Boolean,
+        default: false
+    }
+
+})
+
+
+module.exports = model('PagadoTF', PagadoTFSchema);
